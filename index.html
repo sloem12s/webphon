@@ -17,308 +17,190 @@
 
 
   
-  <title>CodePen - Vuetify Responsive Navbar</title>
+  <title>CodePen - Smooth bottom bar CSS animation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
   
-  
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css'>
   
 <style>
-@import url("https://fonts.cdnfonts.com/css/event-horizon");
-* {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  font-family: "Event Horizon", sans-serif;
-}
-#app {
-  /*background: url(https://images.unsplash.com/photo-1551970634-747846a548cb?ixlib)
-    center/cover no-repeat;*/
-  background-color: #090a0f;
-  background: radial-gradient(
-    ellipse at bottom,
-    rgba(27, 39, 53, 1),
-    rgba(9, 10, 15, 1)
-  );
-  overflow: hidden;
-  z-index: 1;
-}
-.my_nav {
-  backdrop-filter: blur(10px);
-}
-.link {
-  padding: 10px 20px;
-  position: relative;
-}
-.link .underline_left,
-.link .underline_right {
-  display: block;
-  position: absolute;
-  height: 4px;
-  width: 0px;
-  bottom: -4px;
-  transition: 0.25s;
-}
-.link .underline_left {
-  left: 50%;
-  border-radius: 2px 0 0 2px;
-}
-.link .underline_right {
-  right: 50%;
-  border-radius: 0 2px 2px 0;
-}
-.link:hover .underline_left {
-  width: 50%;
-  left: 0;
-}
-.link:hover .underline_right {
-  width: 50%;
-  right: 0;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap");
+
+:root {
+  --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.btn {
-  position: relative;
-  border: none;
-  background: #fff1;
-  backdrop-filter: blur(10px);
-  color: white;
-  padding: 10px 20px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  overflow: hidden;
-  border: 1px solid #fff5;
-  border-radius: 1px;
-  transition: 0.25s;
-}
-.btn:hover {
-  box-shadow: 5px 5px 5px #0005;
-  transform: scale(1.025);
-}
-.btn:active {
-  box-shadow: 0 0 0 #0005;
-  transform: scale(1);
-}
-.btn::before {
-  position: absolute;
-  content: "";
-  height: 100%;
-  width: 100%;
-  background: -webkit-linear-gradient(
-    left,
-    rgba(255, 255, 255, 0) 0,
-    rgba(255, 255, 255, 0.25) 50%,
-    transparent 50%
-  );
-  top: 0;
-  left: -80%;
-  transform: skew(-45deg);
-  transition: 0.5s;
-}
-.btn:hover::before {
-  left: 120%;
+html {
+  color: #56688a;
+  background: #fafafa;
 }
 
-/* ----------- lamp css ------------- */
-
-.lamp {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 100vh;
-  width: 100vw;
-  min-width: 100vw;
-  z-index: -1;
-  /*filter: blur(100px);*/
+.material-symbols-outlined {
+  font-size: 24px;
+  font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 40;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.lava {
-  filter: url("#goo");
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-
-.blob {
-  border-radius: 50%;
-  background: #232f37;
-  /* Other sample colors:
-  Orange: #e8630a
-  Pink: #EA3281
-  Fuscia: #E71669
-  Purple: #661BAC
-  Yellow: #FDC600
-  Kermit green: #75AC25
-  Light blue: #3283B5
-  Dark blue: #0A5D9A
-  Gunmetal: #232F37
-  BGLight: #1B2735
-  BGDark: #090a0f
-  Want more colors? check out https://coolors.co/ for inspiration.
-  */
-  position: absolute;
-}
-.blob.top {
-  border-radius: 50%;
-  width: 100%;
-  height: 3%;
-  top: -3%;
-  left: 0;
-}
-.blob.bottom {
-  border-radius: 50%;
-  width: 100%;
-  height: 4%;
-  bottom: -3%;
-  left: 0;
-}
-.blob:nth-child(1) {
-  width: 200px;
-  height: 200px;
-  left: 35%;
-  bottom: -15%;
-
-  animation: wobble 4s ease-in-out alternate infinite,
-    blob-one ease-in-out 13s infinite;
-}
-.blob:nth-child(2) {
-  width: 330px;
-  height: 330px;
-  right: 24%;
-  bottom: -65%;
-
-  animation: wobble 5s ease-in-out alternate infinite,
-    blob-two ease-in-out 22s infinite;
-}
-.blob:nth-child(3) {
-  width: 150px;
-  height: 150px;
-  bottom: -15%;
-  left: 34%;
-
-  animation: wobble 6s ease-in-out alternate infinite,
-    blob-three ease-in-out 16s infinite;
-}
-.blob:nth-child(4) {
-  width: 235px;
-  height: 235px;
-  bottom: -19%;
-  left: 30%;
-
-  animation: wobble 7s ease-in-out alternate infinite,
-    blob-four ease-in-out 12s infinite;
-}
-.blob:nth-child(5) {
-  width: 55px;
-  height: 55px;
-  bottom: -25%;
-  left: 34%;
-
-  animation: wobble 9s ease-in-out alternate infinite,
-    blob-five ease-in-out 32s infinite;
-}
-.blob:nth-child(6) {
-  width: 35px;
-  height: 35px;
-  bottom: -25%;
-  right: 34%;
-
-  animation: wobble 10s ease-in-out alternate infinite,
-    blob-six ease-in-out 12s infinite;
-}
-.blob:nth-child(7) {
-  width: 435px;
-  height: 435px;
-  bottom: -85%;
-  right: 40%;
-
-  animation: wobble 11s ease-in-out alternate infinite,
-    blob-seven ease-in-out 32s infinite;
-}
-@keyframes blob-one {
-  0%,
-  100% {
-    transform: translatey(0);
-  }
-  50% {
-    transform: translatey(-700%);
-  }
-}
-
-@keyframes blob-two {
-  0%,
-  100% {
-    transform: translatey(0);
-  }
-  50% {
-    transform: translatey(-420%);
-  }
-}
-
-@keyframes blob-three {
-  0%,
-  100% {
-    transform: translatey(0);
-  }
-  50% {
-    transform: translatey(-305%);
-  }
-}
-@keyframes blob-four {
-  0%,
-  100% {
-    transform: translatey(0);
-  }
-  50% {
-    transform: translatey(-605%);
-  }
-}
-@keyframes blob-five {
-  0%,
-  100% {
-    transform: translatey(0);
-  }
-  50% {
-    transform: translatey(-700%);
-  }
-}
-@keyframes blob-six {
-  0%,
-  100% {
-  }
-  50% {
-    transform: translatey(-700%);
-  }
-}
-@keyframes blob-seven {
-  0%,
-  100% {
-    transform: translatey(0);
-  }
-  50% {
-    transform: translatey(-300%);
-  }
-}
-
-@keyframes wobble {
-  50% {
-    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-  }
-  100% {
-    border-radius: 38% 52% 75% 36% / 50% 40% 50% 60%;
-  }
-}
-
-/*------ cradit -------------- */
-.cradit {
+.bottom-bar {
   position: fixed;
-  font-size: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 20px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  background: #ffffff;
+  filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.1));
+  display: flex;
+  justify-content: center;
 }
+
+.bottom-bar__list {
+  flex-basis: 32rem;
+  display: flex;
+  position: relative;
+  cursor: pointer;
+}
+
+.bottom-bar__active-indicator {
+  width: 20%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  transform: translate(0, -0.5rem);
+  pointer-events: none;
+  transition: transform 0.3s var(--easing);
+}
+
+.bottom-bar__active-indicator::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #d9dbf1;
+  border-radius: 1.5rem;
+  border: 4px solid white;
+}
+
+.bottom-bar__active-indicator.active--1::before {
+  animation: Stretch 0.18s linear;
+}
+.bottom-bar__active-indicator.active--2::before {
+  animation: Stretch2 0.2s linear;
+}
+.bottom-bar__active-indicator.active--3::before {
+  animation: Stretch3 0.2s linear;
+}
+.bottom-bar__active-indicator.active--4::before {
+  animation: Stretch4 0.225s linear;
+}
+
+.bottom-bar__active-indicator.active-left::before {
+  transform-origin: center right;
+}
+
+.bottom-bar__active-indicator.active-right::before {
+  transform-origin: center left;
+}
+
+.bottom-bar__link {
+  flex: 1;
+  font-size: 0.675rem;
+  font-weight: 300;
+  letter-spacing: 0.025rem;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  z-index: 2;
+}
+
+.bottom-bar__link.selected {
+  font-weight: 500;
+  letter-spacing: 0.0125rem;
+  color: #1e2133;
+}
+
+.bottom-bar__link.selected .material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;
+  font-size: 24px;
+  transform: translateY(-0.25rem);
+  transition: color 0.2s 0.1s ease-in-out, transform 0.3s var(--easing),
+    font-variation-settings 0.2s 0.1s ease-in-out;
+}
+
+@keyframes Stretch {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(2.25, 0.65);
+    border-radius: 1.25rem;
+  }
+  0% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes Stretch2 {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(2.75, 0.625);
+    border-radius: 1.125rem;
+  }
+  0% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes Stretch3 {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(3.5, 0.6);
+    border-radius: 1.125rem;
+  }
+  0% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes Stretch4 {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(4.5, 0.55);
+    border-radius: 1.125rem;
+  }
+  0% {
+    transform: scale(1, 1);
+  }
+}
+#wrap {
+        position: relative;
+        }
+        .section {
+        padding: 40px 20px;
+        border-bottom: 1px solid #ddd;
+        }
+        .section:last-child {
+        border-bottom: 0;
+        }
+        .section--d {
+        background: #000;
+        }
+        .center {
+        width: 100%;
+        max-width: 980px;
+        margin: auto;
+        }
+        video{
+            border-radius: 20px;
+        }
 </style>
 
   <script>
@@ -331,97 +213,171 @@
   if (document.location.search.match(/type=embed/gi)) {
     window.parent.postMessage("resize", "*");
   }
+  
 </script>
 
 
 </head>
+<body >
 
-<body translate="no" >
-  <div id="app">
-  <v-app>
-    <v-main>
-      <nav class="my_nav d-none d-md-block">
-        <v-container class="fill-height d-flex justify-space-between align-center">
-          <div class="logo"><a href="https://mnsadik-v3.netlify.app" target="_blank_"><img width="60" src="https://mnsadik-v3.netlify.app/icon.png" alt="" /></a></div>
-          <div class="links">
-            <a class="link text-decoration-none white--text" v-for="(items,i) in links" :key="i" href="items.url">
-              <span class="white underline_left"></span>
-              {{items.title}}
-              <span class="white underline_right"></span>
-            </a>
-          </div>
-          <div class="action_btn"><button class="btn">Download CV</button></div>
-        </v-container>
-      </nav>
-      <nav class="my_nav d-md-none" style="position: absolute;bottom: 1px; width: 100%;">
-        <v-container class="fill-height d-flex justify-space-between align-center">
-          <div class="links">
-            <a class="link text-decoration-none white--text" v-for="(items,i) in links" :key="i" href="items.url">
-              <span class="white underline_left"></span>
-              <i :class="items.icon"></i>
-              <span class="white underline_right"></span>
-            </a>
-          </div>
-        </v-container>
-        
-      </nav>
-      <div class="bg">
-        <div class="lamp">
-          <div class="lava">
-            <div class="blob" v-for="i in 7" :key="i"></div>
-            <div class="blob top"></div>
-            <div class="blob bottom"></div>
-          </div>
-        </div>
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-          <defs>
-            <filter id="goo">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-              <feBlend in="SourceGraphic" in2="goo" />
-            </filter>
-          </defs>
-        </svg>
-      </div>
-      <p class="cradit white--text"> Blob pen by <a href="https://codepen.io/404ryannotfound/pen/gOpXpMM" target="_blank">404ryannotfound</a></p>
-    </v-main>
-  </v-app>
-</div>
+		<!-- section -->
+		<div class="section">
+			<div class="center">
 
+				<div id="video" style="border-radius: 20px;">
+					<div class="video-control" id="video-play"></div>
+					<div class="video-control" id="video-over"></div>
+                    <video controls>
+                        <source src="https://stream.fushaar.link/movie/12093/12093.mp4?wmsAuthSign=c2VydmVyX3RpbWU9Mi8xMy8yMDIzIDU6NDQ6MjUgUE0maGFzaF92YWx1ZT0xRGw1TDhBM29qWklKdXRKNTgyeVZRPT0mdmFsaWRtaW51dGVzPTQ1MA==" type="video/mp4">
+
+                      </video> 
+				</div>
+
+			</div>
+		</div>
+		<!--/section -->
+        		<!-- section -->
+		<div class="section">
+			<div class="center">
+
+				<div id="video" style="border-radius: 20px;">
+					<div class="video-control" id="video-play"></div>
+					<div class="video-control" id="video-over"></div>
+                    <video controls>
+                        <source src="https://stream.fushaar.link/movie/12093/12093.mp4?wmsAuthSign=c2VydmVyX3RpbWU9Mi8xMy8yMDIzIDU6NDQ6MjUgUE0maGFzaF92YWx1ZT0xRGw1TDhBM29qWklKdXRKNTgyeVZRPT0mdmFsaWRtaW51dGVzPTQ1MA==" type="video/mp4">
+
+                      </video> 
+				</div>
+
+			</div>
+		</div>
+		<!--/section -->
+        		<!-- section -->
+		<div class="section">
+			<div class="center">
+
+				<div id="video" style="border-radius: 20px;">
+					<div class="video-control" id="video-play"></div>
+					<div class="video-control" id="video-over"></div>
+                    <video controls>
+                        <source src="https://stream.fushaar.link/movie/12093/12093.mp4?wmsAuthSign=c2VydmVyX3RpbWU9Mi8xMy8yMDIzIDU6NDQ6MjUgUE0maGFzaF92YWx1ZT0xRGw1TDhBM29qWklKdXRKNTgyeVZRPT0mdmFsaWRtaW51dGVzPTQ1MA==" type="video/mp4">
+
+                      </video> 
+				</div>
+
+			</div>
+		</div>
+		<!--/section -->
+        		<!-- section -->
+		<div class="section">
+			<div class="center">
+
+				<div id="video" style="border-radius: 20px;">
+					<div class="video-control" id="video-play"></div>
+					<div class="video-control" id="video-over"></div>
+                    <video controls>
+                        <source src="https://stream.fushaar.link/movie/12093/12093.mp4?wmsAuthSign=c2VydmVyX3RpbWU9Mi8xMy8yMDIzIDU6NDQ6MjUgUE0maGFzaF92YWx1ZT0xRGw1TDhBM29qWklKdXRKNTgyeVZRPT0mdmFsaWRtaW51dGVzPTQ1MA==" type="video/mp4">
+
+                      </video> 
+				</div>
+
+			</div>
+		</div>
+		<!--/section -->
+        		<!-- section -->
+		<div class="section">
+			<div class="center">
+
+				<div id="video" style="border-radius: 20px;">
+					<div class="video-control" id="video-play"></div>
+					<div class="video-control" id="video-over"></div>
+                    <video controls>
+                        <source src="https://stream.fushaar.link/movie/12093/12093.mp4?wmsAuthSign=c2VydmVyX3RpbWU9Mi8xMy8yMDIzIDU6NDQ6MjUgUE0maGFzaF92YWx1ZT0xRGw1TDhBM29qWklKdXRKNTgyeVZRPT0mdmFsaWRtaW51dGVzPTQ1MA==" type="video/mp4">
+
+                      </video> 
+				</div>
+
+			</div>
+		</div>
+		<!--/section -->
+        		<!-- section -->
+		<div class="section">
+			<div class="center">
+
+				<div id="video" style="border-radius: 20px;">
+					<div class="video-control" id="video-play"></div>
+					<div class="video-control" id="video-over"></div>
+                    <video controls>
+                        <source src="https://stream.fushaar.link/movie/12093/12093.mp4?wmsAuthSign=c2VydmVyX3RpbWU9Mi8xMy8yMDIzIDU6NDQ6MjUgUE0maGFzaF92YWx1ZT0xRGw1TDhBM29qWklKdXRKNTgyeVZRPT0mdmFsaWRtaW51dGVzPTQ1MA==" type="video/mp4">
+
+                      </video> 
+				</div>
+
+			</div>
+		</div>
+		<!--/section -->
+
+    <nav class="bottom-bar">
+  <ul class="bottom-bar__list">
+    <div class="bottom-bar__active-indicator"></div>
+    <li class="bottom-bar__link selected"><span class="material-symbols-outlined">
+        home
+      </span>Home</i>
+    <li class="bottom-bar__link"><span class="material-symbols-outlined">
+        Search
+      </span>Explore</li>
+    <li class="bottom-bar__link"><span class="material-symbols-outlined">
+        Favorite
+      </span>Saved</li>
+    <li class="bottom-bar__link"><span class="material-symbols-outlined">
+        Notifications
+      </span>Notifications</li>
+    <li class="bottom-bar__link"><span class="material-symbols-outlined">
+        Person
+      </span>Profile</li>
+  </ul>
+</nav>
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
 
-  <script src='https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js'></script>
+  
       <script id="rendered-js" >
-new Vue({
-  el: "#app",
-  vuetify: new Vuetify(),
-  data: () => ({
-    links: [
-    {
-      url: "#",
-      icon: "ri-home-smile-2-line",
-      title: "Home" },
+let list = document.querySelector(".bottom-bar__list");
 
-    {
-      url: "#",
-      icon: "ri-user-line",
-      title: "About" },
+let activeItemIndex = 1;
 
-    {
-      url: "#",
-      icon: "ri-service-line",
-      title: "Service" },
+let items = list.children;
 
-    {
-      url: "#",
-      icon: "ri-service-line",
-      title: "Service" },
+const handleClick = index => {
+  if (index !== activeItemIndex) {
+    items[activeItemIndex].classList.remove("selected");
+    items[index].classList.add("selected");
 
-    {
-      url: "#",
-      icon: "ri-contacts-line",
-      title: "Contact" }] }) });
+    let direction;
+    index - activeItemIndex > 0 ? direction = 1 : direction = -1;
+
+    let magnitude = Math.abs(index - activeItemIndex);
+
+    activeItemIndex = index;
+
+    items[0].style.transform =
+    "translate(" + (activeItemIndex - 1) * 100 + "%, -0.5rem)";
+
+    items[0].classList.add("active--" + magnitude);
+    items[0].classList.add(direction > 0 ? "active-right" : "active-left");
+    console.log(items[0].classList);
+
+    setTimeout(() => {
+      items[0].classList.remove("active--" + magnitude);
+      items[0].classList.remove(direction > 0 ? "active-right" : "active-left");
+    }, 200);
+  }
+};
+
+Object.keys(items).forEach((item, index) => {
+  items[index].addEventListener("click", () => {
+    handleClick(index);
+  });
+});
 //# sourceURL=pen.js
     </script>
 
